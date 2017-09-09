@@ -13,8 +13,7 @@ defmodule Formatter do
   end
 
   def get_results([], accumulator) do
-    header = get_header()
-    append_output(header, accumulator)
+    get_header() |> append_output(accumulator)
   end
 
   def get_results([ result | remaining ], accumulator) do

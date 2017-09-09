@@ -7,26 +7,32 @@
 # Determine type of project (NodeJS, Elixir, etc) 
 
 defmodule Search do
+  defp is_git(dir) do
+    ".git" in File.ls!(dir)
+  end
+
+  defp get_directory_output(path) do
+      %{ 
+        directory: path,
+        git: is_git(path)
+       }
+  end
+
   def find(dirs) when is_bitstring(dirs) do
     find([ dirs ])
   end
 
-  def find(dirs) do
-    for dir <- dirs,
-        full_dir = Path.expand(dir),
-        inner_dir <- File.ls!(full_dir),
-        path = Path.join(full_dir, inner_dir),
-        File.dir?(path) do
-      is_git_path = is_git(path)
-
-      %{ 
-        directory: path, 
-        git: is_git_path 
-       }
-    end
+  def get_inner_directories(directory) do
+    File.ls!(directory) |> Enum.map(fn(inner) -> Path.join(directory, inner) end)
   end
 
-  def is_git(dir) do
-    ".git" in File.ls!(dir)
+  def find(dirs) do
+    dirs
+      |> Enum.map(&Path.expand/1)
+      |> Enum.filter(&File.dir?/1)
+      |> Enum.map(&get_inner_directories/1)
+      |> List.flatten
+      |> Enum.filter(&File.dir?/1)
+      |> Enum.map(&get_directory_output/1)
   end
 end
