@@ -22,7 +22,8 @@ defmodule GitFinder.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:git_cli, "~> 0.2"}
+      {:git_cli, "~> 0.2"},
+      {:bunt, "~> 0.1.0"}
     ]
   end
 end
