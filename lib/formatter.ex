@@ -1,6 +1,7 @@
 defmodule Formatter do
-  # TODO: Formatted directories/output evenly
-  defp get_formatted_entry(directory, git, branches), do: "#{directory}\t\t\t\t#{git}\t#{branches}"
+  defp get_formatted_entry(directory, git, branches) do
+    "#{String.pad_trailing(directory, 40)}#{String.pad_trailing(git, 8)}#{branches}"
+  end
   defp append_output(a, b) when a == "", do: "#{b}"
   defp append_output(a, b), do: "#{a}\n#{b}"
 
