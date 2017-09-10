@@ -17,7 +17,6 @@ defmodule Formatter do
 
   def get_results([], accumulator) do
     List.insert_at(accumulator, 0, get_header())
-    #get_header() |> [ &1 | accumulator )
   end
 
   def get_results([ result | remaining ], accumulator) do
