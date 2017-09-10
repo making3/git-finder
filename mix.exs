@@ -6,6 +6,7 @@ defmodule GitFinder.Mixfile do
       app: :gitfinder,
       version: "0.1.0",
       elixir: "~> 1.5.1",
+      escript: [main_module: Main],
       start_permanent: Mix.env == :prod,
       deps: deps()
     ]

@@ -18,12 +18,12 @@ defmodule Search do
        }
   end
 
-  def find(dirs) when is_bitstring(dirs) do
-    find([ dirs ])
-  end
-
   def get_inner_directories(directory) do
     File.ls!(directory) |> Enum.map(fn(inner) -> Path.join(directory, inner) end)
+  end
+
+  def find(dirs) when is_bitstring(dirs) do
+    find([ dirs ])
   end
 
   def find(dirs) do
