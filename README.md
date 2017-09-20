@@ -5,5 +5,4 @@ Small tool for checking if directories are git directories and the number of bra
 
 # Running
 
-    mix escript.build                 # Build the executable
-    ./gitfinder ~/dev/ ~/dev/project  # Run the tool
+    mix git_finder your_path_here your_other_path
