@@ -1,16 +1,4 @@
 defmodule Formatter do
-  defp get_formatted_entry(directory, color, git, branches) do
-    [
-      color,
-      "#{String.pad_trailing(directory, 40)}#{String.pad_trailing(git, 8)}#{branches}",
-      "\n"
-    ]
-  end
-
-  defp get_git_output(is_git) do
-    if is_git, do: "Yes", else: "No"
-  end
-
   def get_header() do
     get_formatted_entry("Directory", :hotpink, "Git?", "Branches")
   end
@@ -25,4 +13,15 @@ defmodule Formatter do
     result = [ accumulator | output]
     get_results(remaining, result)
   end
+
+  defp get_formatted_entry(directory, color, git, branches) do
+    [
+      color,
+      "#{String.pad_trailing(directory, 40)}#{String.pad_trailing(git, 8)}#{branches}",
+      "\n"
+    ]
+  end
+
+  defp get_git_output(true), do: "Yes"
+  defp get_git_output(_), do: "No"
 end
